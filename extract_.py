@@ -104,7 +104,6 @@ def f3(url):
 
 
 def get_lat_long(urls, num_loc):
-
     lat_long = [(-1, -1)] * (num_loc)
     lat_long1 = []
     cnt = 0
