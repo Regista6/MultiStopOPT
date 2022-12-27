@@ -1,0 +1,5 @@
+geopy==2.3
+ortools==9.4.1874
+streamlit==1.15.2
+protobuf==3.20.1
+pip==22.3.1
