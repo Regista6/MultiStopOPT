@@ -1,5 +1,8 @@
 ## MultiStopOPT 🛣️
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://multistopopt.streamlit.app/)
+
+
 ### Optimize Multi-Stop Routes on Google Maps 🗺️
 
 - Optimize the order of stops on Google Maps 🔧
