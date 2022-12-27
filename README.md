@@ -2,10 +2,10 @@
 
 ### Optimize Multi-Stop Routes on Google Maps 🗺️
 
-    - Optimize the order of stops on Google Maps 🔧
-    - Add start and end location 👈
-    - Add fixed sequence of locations 💪
-    - Add pickup and delivery ✌️
+- Optimize the order of stops on Google Maps 🔧
+- Add start and end location 👈
+- Add fixed sequence of locations 💪
+- Add pickup and delivery ✌️
 
 ### Dependencies 🙏
 
