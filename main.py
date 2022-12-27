@@ -98,4 +98,5 @@ if __name__ == "__main__":
 
     st.subheader("About 📃")
     st.write("Powered by Google OR-Tools [Apache License 2.0](https://github.com/google/or-tools/blob/92eab40155d5566039c92662632f196174f8da47/LICENSE) and geopy [MIT License](https://github.com/geopy/geopy/blob/ef48a8cbb85f842c0820333e53e7ebde7db382a3/LICENSE)")
-    st.write("Copyright (c) 2022 [Regista6](https://github.com/Regista6)")
+    st.write(
+        "Copyright (c) 2022 [Regista6](https://github.com/Regista6) [Repository](https://github.com/Regista6/MultiStopOPT)")
