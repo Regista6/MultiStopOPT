@@ -58,7 +58,7 @@ if __name__ == "__main__":
     num_urls = st.number_input("Num_URLs\n", min_value=1, max_value=15, step=1)
     urls = []
     for i in range(num_urls):
-        url = st.text_input("G_Maps URL\n", key=i)
+        url = st.text_input("G_Maps Route URL\n", key=i)
         urls.append(url)
     start_idx = st.number_input("Start_Location (Locations are numbered from 1 and follow the URL sequence. 0 implies not fixed.) \n",
                                 min_value=0, max_value=num_loc, step=1, value=0)
