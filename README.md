@@ -9,5 +9,5 @@
 
 ### Dependencies 🙏
 
-  - [Google OR-Tools v9.5](https://github.com/google/or-tools) ([Apache License 2.0](https://github.com/google/or-tools/blob/stable/LICENSE))
+  - [Google OR-Tools v9.4](https://github.com/google/or-tools) ([Apache License 2.0](https://github.com/google/or-tools/blob/stable/LICENSE))
   - [geopy v2.3](https://github.com/geopy/geopy) ([MIT License](https://github.com/geopy/geopy/blob/master/LICENSE))
