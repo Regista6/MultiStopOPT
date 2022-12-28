@@ -51,6 +51,7 @@ def print_solution(manager, routing, solution, data, lat_long):
 
 
 def optimize(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
+    """Optimize the order of stops based on geodesic distance."""
     data = create_model(lat_long)
     manager = pywrapcp.RoutingIndexManager(
         len(data['distance_matrix']), data['num_vehicles'], data['depot'])
@@ -58,7 +59,6 @@ def optimize(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
 
     def distance_callback(from_index, to_index):
         """Returns the distance between the two nodes."""
-        # Convert from routing variable Index to distance matrix NodeIndex.
         from_node = manager.IndexToNode(from_index)
         to_node = manager.IndexToNode(to_index)
         return data['distance_matrix'][from_node][to_node]

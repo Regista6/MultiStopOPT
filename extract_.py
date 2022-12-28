@@ -1,23 +1,19 @@
 import re
 import streamlit as st
 
-'''
+
+"""
 https://www.google.com/maps/dir/Knockdown+Center/Roberta's,+261+Moore+St,+Brooklyn,+NY+11206,+United+States/40.6983609,-73.9088167/@40.7062513,-73.9058627,14z
 /data=!4m15!4m14!1m5!1m1!1s0x89c25ea2cb53d0a9:0xe6dd93729a094800!2m2!1d-73.914068!2d40.7153921!1m5!1m1!1s0x89c25d0d3ab223cd:0x16b11fd586b90f7d!2m2!1d-73.9335781!2d40.7050612!1m0!3e0
 
-Above is a typical GMaps URL having 3 locations.
-f1() extracts coordinates of locations before "data". These locations have no names associated with them.
-f1() will extract (40.6983609, -73.9088167) from the above URL.
-f2() on the other hand decodes the "data" string and extracts coordinates of locations present there. f2() can sometimes get
-coordinates already extracted by f1().
-Using f1(), f2() and f3(), coordinates of all locations are extracted in the original order.
-
-'''
+Above is a typical Google Maps Route URL having 3 locations.
+"""
 
 # TODO: Make everything cleaner.
 
 
 def f1(link, lat_long):
+    """Extract (lat, long) before the 'data' field from GMaps route URL."""
     parts = link.split('@')
     decimals = re.findall(r'-?\d+\.\d+', parts[0])
     for i in range(0, len(decimals)-1, 2):
@@ -34,6 +30,7 @@ def extract(l, a):  # recursive algorithm for extracting items from a list of li
 
 
 def f2(link, lat_long, num_loc):  # https://gist.github.com/jeteon/e71fa21c1feb48fe4b5eeec045229a0c
+    """Extract (lat, long) by decoding the 'data' field of GMaps route URL."""
     index = link.find('=')
     str1 = link[index+1:]
     parts = str1.split('!')
@@ -92,6 +89,7 @@ def f2(link, lat_long, num_loc):  # https://gist.github.com/jeteon/e71fa21c1feb4
 
 
 def f3(url):
+    """Extract everything between 'dir' and '@' from GMaps Route URL."""
     match = re.search(r"dir(.+?)@", url)
     text = ""
     if match:
@@ -104,6 +102,7 @@ def f3(url):
 
 
 def get_lat_long(urls, num_loc):
+    """Extract (latitude, longitude) from Google Maps Route URL with original order maintained."""
     lat_long = [(-1, -1)] * (num_loc)
     lat_long1 = []
     cnt = 0
