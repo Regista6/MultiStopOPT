@@ -5,7 +5,7 @@ import streamlit as st
 
 
 def main(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
-
+    """Optimize and display the output GMaps Route URL"""
     output_G_maps_URL, final_points = ortools_.optimize(
         lat_long, start_idx, end_idx, priority_locs, p_d, time_lim)
     if len(final_points) <= 25:
@@ -19,6 +19,7 @@ def main(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
 
 
 def check_seq(s, nmax):
+    """Check if fixed sequence input is valid"""
     if s == "":
         return True
     pattern = re.compile(r"^\d+(,\d+)*$")
@@ -31,6 +32,7 @@ def check_seq(s, nmax):
 
 
 def check_seq_pd(s, nmax):
+    """Check if pickup & delivery input is valid"""
     if s == "":
         return True
     pattern = re.compile(r"^\d+(,\d+)*$")
