@@ -18,7 +18,7 @@ def f1(link, lat_long):
     decimals = re.findall(r'-?\d+\.\d+', parts[0])
     for i in range(0, len(decimals)-1, 2):
         lat, long = float(decimals[i]), float(decimals[i+1])
-        lat_long.append(lat, long)
+        lat_long.append((lat, long))
 
 
 def extract(l, a):  # recursive algorithm for extracting items from a list of lists and items
@@ -81,7 +81,7 @@ def f2(link, lat_long, num_loc):  # https://gist.github.com/jeteon/e71fa21c1feb4
         if j >= (len(l)-1):
             break
         if lat_long[i] == (-1, -1):
-            lat_long[i] = (l[j+1], l[j])
+            lat_long[i] = ((l[j+1], l[j]))
             j += 2
             cnt1 += 1
 
