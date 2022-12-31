@@ -91,7 +91,7 @@ if __name__ == "__main__":
                     st.write("Check Pickup & Delivery 🙁.")
                 else:
                     st.write(
-                        "Error 🙁. One possible reason could be constraints contradicting each other ❌")
+                        "Something Went Wrong 😔")
         else:
             if "" in urls:
                 st.write("Check URLs 🙁.")

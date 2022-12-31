@@ -44,7 +44,7 @@ def print_solution(manager, routing, solution, data, lat_long):
     except:
         st.write("Some locations were dropped to get a feasible solution.🤯")
         st.write(
-            "For e.g. selecting 1 as the start_loc and then setting fixed sequence as 5,1,2 could be a reason.⚠️")
+            "One possible reason could be constraints contradicting each other.⚠️")
         st.write("For other unclear cases, increasing the time_limit could work.⌛")
     output_ = "https://www.google.com/maps/dir" + temp
     return output_, coord
