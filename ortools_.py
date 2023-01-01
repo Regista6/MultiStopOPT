@@ -38,7 +38,7 @@ def print_solution(manager, routing, solution, data, lat_long):
         latitude, longitude = lat_long[node-1]
         coord.append((latitude, longitude))
         cnt += 1
-        temp += '/' + '%27' + str(latitude) + ',' + str(longitude) + '%27'
+        temp += '/' + '%27' + str(latitude) + '%2C' + str(longitude) + '%27'
     try:
         assert (cnt == len(lat_long))
     except:
