@@ -10,8 +10,12 @@ def main(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_
         lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim)
     if len(final_points) <= 25:
         st.write(f"[Optimized Route 🚛]({output_G_maps_URL2})")
-        st.write(f"If above URL doesn't work, try [this]({output_G_maps_URL1})")
-        st.write(f"The second URL is more accurate however it alters the names of the locations")
+        st.write(f"If above URL doesn't work, try [this].({output_G_maps_URL1})")
+        st.write(
+            f"The first URL prioritizes preserving the original names of the locations, but may not be as accurate.🔍")
+        st.write(
+            f"The second URL is more accurate, but may alter the names of the locations.🙂")
+        st.write(f"In both cases, slight manual adjustments may be necessary.🛠️")
     else:
         st.write(f"Optimized Route 🚛")
         st.write(
