@@ -1,12 +1,12 @@
 import extract
-import ortools
+import ORTools
 import re
 import streamlit as st
 
 
 def main(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim):
     """Optimize and display the output GMaps Route URL"""
-    output_G_maps_URL1, output_G_maps_URL2, final_points = ortools.optimize(
+    output_G_maps_URL1, output_G_maps_URL2, final_points = ORTools.optimize(
         lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim)
     if len(final_points) <= 25:
         st.write(f"[Optimized Route 🚛]({output_G_maps_URL2})")
