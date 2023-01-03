@@ -11,7 +11,7 @@ def main(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_
     if len(final_points) <= 25:
         st.write(f"[Optimized Route 🚛]({output_G_maps_URL2})")
         st.write(
-            f"If above URL doesn't work, try [this] 🚗({output_G_maps_URL1}).")
+            f"If above URL doesn't work, try [this 🚗]({output_G_maps_URL1}).")
         st.write(
             f"The first URL prioritizes preserving the original names of the locations, but may not be as accurate.🔍")
         st.write(
