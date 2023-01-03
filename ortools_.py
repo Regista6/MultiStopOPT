@@ -23,9 +23,10 @@ def create_model(lat_long):
     return data
 
 
-def print_solution(manager, routing, solution, data, lat_long):
+def print_solution(manager, routing, solution, data, lat_long, loc_identifier):
     # print('Objective: {} km'.format(solution.ObjectiveValue()/10000000))
-    temp = ""
+    temp1 = ""
+    temp2 = ""
     index = routing.Start(0)
     cnt = 0
     coord = []
@@ -37,8 +38,10 @@ def print_solution(manager, routing, solution, data, lat_long):
             continue
         latitude, longitude = lat_long[node-1]
         coord.append((latitude, longitude))
+        loc_identity = loc_identifier[node-1]
         cnt += 1
-        temp += '/' + '%27' + str(latitude) + '%2C' + str(longitude) + '%27'
+        temp1 += '/' + '%27' + str(latitude) + '%2C' + str(longitude) + '%27'
+        temp2 += '/' + '%27' + loc_identity + '%27'
     try:
         assert (cnt == len(lat_long))
     except:
@@ -46,11 +49,12 @@ def print_solution(manager, routing, solution, data, lat_long):
         st.write(
             "One possible reason could be constraints contradicting each other.⚠️")
         st.write("For other unclear cases, increasing the time_limit could work.⌛")
-    output_ = "https://www.google.com/maps/dir" + temp
-    return output_, coord
+    output1 = "https://www.google.com/maps/dir" + temp1
+    output2 = "https://www.google.com/maps/dir" + temp2 + '/' + loc_identifier[-1]
+    return output1, output2, coord
 
 
-def optimize(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
+def optimize(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim):
     """Optimize the order of stops based on geodesic distance."""
     data = create_model(lat_long)
     manager = pywrapcp.RoutingIndexManager(
@@ -122,4 +126,4 @@ def optimize(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
 
     st.write(f"{status_dict[status]}")
     if solution:
-        return print_solution(manager, routing, solution, data, lat_long)
+        return print_solution(manager, routing, solution, data, lat_long, loc_identifier)

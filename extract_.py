@@ -101,10 +101,20 @@ def f3(url):
     return substrings
 
 
+def f4(url):
+    result = re.search(r"@(.+?)data", url)
+    if result:
+        matched_string = result.group(1)
+        center = "@" + matched_string.rstrip("/")
+        return center
+
+
 def get_lat_long(urls, num_loc):
     """Extract (latitude, longitude) from Google Maps Route URL with original order maintained."""
     lat_long = [(-1, -1)] * (num_loc)
     lat_long1 = []
+    # This is to ensure final output url loc_names are same as that of the original
+    loc_identifier = []
     cnt = 0
     for url in urls:
         elem = f3(url)
@@ -115,7 +125,9 @@ def get_lat_long(urls, num_loc):
             idx = elem.index(str1)
             if (idx+cnt) < num_loc:
                 lat_long[idx+cnt] = (lat_, long_)
+        loc_identifier += elem
         cnt += len(lat_long1)
         cnt += f2(url, lat_long, num_loc)
-
-    return lat_long
+    center = f4(urls[0])
+    loc_identifier.append(center)
+    return lat_long, loc_identifier

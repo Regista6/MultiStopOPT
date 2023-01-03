@@ -4,12 +4,14 @@ import re
 import streamlit as st
 
 
-def main(lat_long, start_idx, end_idx, priority_locs, p_d, time_lim):
+def main(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim):
     """Optimize and display the output GMaps Route URL"""
-    output_G_maps_URL, final_points = ortools_.optimize(
-        lat_long, start_idx, end_idx, priority_locs, p_d, time_lim)
+    output_G_maps_URL1, output_G_maps_URL2, final_points = ortools_.optimize(
+        lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim)
     if len(final_points) <= 25:
-        st.write(f"[Optimized Route 🚛]({output_G_maps_URL})")
+        st.write(f"[Optimized Route 🚛]({output_G_maps_URL2})")
+        st.write(f"If above URL doesn't work, try [this]({output_G_maps_URL1})")
+        st.write(f"The second URL is more accurate however it alters the names of the locations")
     else:
         st.write(f"Optimized Route 🚛")
         st.write(
@@ -75,12 +77,13 @@ if __name__ == "__main__":
     agree = st.checkbox("Show Co-Ordinates")
     if st.button("Optimize 🔧"):
         if "" not in urls and ((start_idx == 0 and end_idx == 0) or (start_idx != end_idx)):
-            lat_long = extract_.get_lat_long(urls, num_loc)
+            lat_long, loc_identifier = extract_.get_lat_long(urls, num_loc)
             try:
                 assert ((-1, -1) not in lat_long)
                 assert (check_seq(priority_locs, num_loc))
                 assert (check_seq_pd(p_d, num_loc))
-                main(lat_long, start_idx, end_idx,
+                #assert (len(loc_identifer) == num_loc)
+                main(lat_long, loc_identifier, start_idx, end_idx,
                      priority_locs, p_d, time_lim)
             except:
                 if ((-1, -1) in lat_long):
