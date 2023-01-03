@@ -1,12 +1,12 @@
-import extract_
-import ortools_
+import extract
+import ortools
 import re
 import streamlit as st
 
 
 def main(lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim):
     """Optimize and display the output GMaps Route URL"""
-    output_G_maps_URL1, output_G_maps_URL2, final_points = ortools_.optimize(
+    output_G_maps_URL1, output_G_maps_URL2, final_points = ortools.optimize(
         lat_long, loc_identifier, start_idx, end_idx, priority_locs, p_d, time_lim)
     if len(final_points) <= 25:
         st.write(f"[Optimized Route 🚛]({output_G_maps_URL2})")
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     agree = st.checkbox("Show Co-Ordinates")
     if st.button("Optimize 🔧"):
         if "" not in urls and ((start_idx == 0 and end_idx == 0) or (start_idx != end_idx)):
-            lat_long, loc_identifier = extract_.get_lat_long(urls, num_loc)
+            lat_long, loc_identifier = extract.get_lat_long(urls, num_loc)
             try:
                 assert ((-1, -1) not in lat_long)
                 assert (check_seq(priority_locs, num_loc))
