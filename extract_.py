@@ -102,6 +102,7 @@ def f3(url):
 
 
 def f4(url):
+    """Extract coordinates of the center from GMaps Route URL"""
     result = re.search(r"@(.+?)data", url)
     if result:
         matched_string = result.group(1)
