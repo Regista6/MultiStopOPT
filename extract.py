@@ -2,18 +2,18 @@ import re
 import streamlit as st
 
 
-"""
+'''
 https://www.google.com/maps/dir/Knockdown+Center/Roberta's,+261+Moore+St,+Brooklyn,+NY+11206,+United+States/40.6983609,-73.9088167/@40.7062513,-73.9058627,14z
 /data=!4m15!4m14!1m5!1m1!1s0x89c25ea2cb53d0a9:0xe6dd93729a094800!2m2!1d-73.914068!2d40.7153921!1m5!1m1!1s0x89c25d0d3ab223cd:0x16b11fd586b90f7d!2m2!1d-73.9335781!2d40.7050612!1m0!3e0
 
 Above is a typical Google Maps Route URL having 3 locations.
-"""
+'''
 
 # TODO: Make everything cleaner.
 
 
 def f1(link, lat_long):
-    """Extract (lat, long) before the 'data' field from GMaps route URL."""
+    '''Extract (lat, long) before the 'data' field from GMaps route URL.'''
     parts = link.split('@')
     decimals = re.findall(r'-?\d+\.\d+', parts[0])
     for i in range(0, len(decimals)-1, 2):
@@ -30,7 +30,7 @@ def extract(l, a):  # recursive algorithm for extracting items from a list of li
 
 
 def f2(link, lat_long, num_loc):  # https://gist.github.com/jeteon/e71fa21c1feb48fe4b5eeec045229a0c
-    """Extract (lat, long) by decoding the 'data' field of GMaps route URL."""
+    '''Extract (lat, long) by decoding the 'data' field of GMaps route URL.'''
     index = link.find('=')
     str1 = link[index+1:]
     parts = str1.split('!')
@@ -89,7 +89,7 @@ def f2(link, lat_long, num_loc):  # https://gist.github.com/jeteon/e71fa21c1feb4
 
 
 def f3(url):
-    """Extract everything between 'dir' and '@' from GMaps Route URL."""
+    '''Extract everything between 'dir' and '@' from GMaps Route URL.'''
     match = re.search(r"dir(.+?)@", url)
     text = ""
     if match:
@@ -102,22 +102,27 @@ def f3(url):
 
 
 def f4(url):
-    """Extract coordinates of the center from GMaps Route URL"""
+    '''Extract coordinates of the center from GMaps Route URL'''
     result = re.search(r"@(.+?)data", url)
     if result:
         matched_string = result.group(1)
         center = "@" + matched_string.rstrip("/")
         return center
 
+def f5(url):
+    '''Remove '?entry=ttu' from the end of the url.'''
+    url = re.sub(r'\?entry=ttu$', '', url)
+    return url
 
 def get_lat_long(urls, num_loc):
-    """Extract (latitude, longitude) from Google Maps Route URL with original order maintained."""
+    '''Extract (latitude, longitude) from Google Maps Route URL with original order maintained.'''
     lat_long = [(-1, -1)] * (num_loc)
     lat_long1 = []
     # This is to ensure final output url loc_names are same as that of the original
     loc_identifier = []
     cnt = 0
     for url in urls:
+        url = f5(url)
         elem = f3(url)
         lat_long1.clear()
         f1(url, lat_long1)
