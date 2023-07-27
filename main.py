@@ -76,7 +76,7 @@ if __name__ == "__main__":
     priority_locs = st.text_input(
         "Locations that will follow a fixed sequence in the final route (E.g. input 3,5,10 => locations 3, 5 and 10 will be in this order)\n")
     p_d = st.text_input(
-        "Pickup & Delivery (E.g. input 3,5,5,12,15,17 => 3->5, 5->12 and 15->17) \n")
+        "Pickup & Delivery (E.g. input 3,5,5,12,15,17 => 3->5, 5->12 and 15->17) (Note: No concept of load for now.)\n")
     time_lim = st.number_input(
         "Time_Limit (sec)\n", min_value=1, max_value=60, step=1, value=1)
     agree = st.checkbox("Show Co-Ordinates")
