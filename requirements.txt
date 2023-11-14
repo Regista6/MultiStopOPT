@@ -2,5 +2,5 @@ geopy==2.3
 ortools==9.4.1874
 streamlit==1.25.0
 protobuf==3.20.2
-pip==23.1.2
+pip==23.3
 altair==4.2.2
