@@ -110,8 +110,8 @@ def f4(url):
         return center
 
 def f5(url):
-    '''Remove '?entry=ttu' from the end of the url.'''
-    url = re.sub(r'\?entry=ttu$', '', url)
+    '''Remove unnecessary portion from the end of the url.'''
+    url = re.sub(r'3e\d.*$', '', url)
     return url
 
 def get_lat_long(urls, num_loc):
